@@ -30,11 +30,11 @@ flowchart TD
 
 ## Features
 
-- **LLM Intent Routing:** Classifies incoming user messages into `greeting`, `stock_price`, `fundamentals`, or `knowledge_base`.
-- **Tool Execution:** Fetches stock quotes, company fundamentals, or searches knowledge base documentation based on the identified intent.
-- **Context Preservation:** Retains conversation history on a per-`sessionId` basis to allow contextual follow-up queries.
-- **Schema Validation:** Validates incoming payloads using Zod middleware before controller execution.
-- **Standardized JSON Envelope:** Enforces a consistent response structure (`{ "success": boolean, ... }`) across endpoints, including application errors.
+* **LLM Intent Routing:** Classifies incoming user messages into `greeting`, `stock_price`, `fundamentals`, or `knowledge_base`.
+* **Tool Execution:** Fetches stock quotes, company fundamentals, or searches knowledge base documentation based on the identified intent.
+* **Context Preservation:** Retains conversation history on a per-`sessionId` basis to allow contextual follow-up queries.
+* **Schema Validation:** Validates incoming payloads using Zod middleware before controller execution.
+* **Standardized JSON Envelope:** Enforces a consistent response structure (`{ "success": boolean, ... }`) across endpoints, including application errors.
 
 ---
 
@@ -42,9 +42,9 @@ flowchart TD
 
 ### Prerequisites
 
-- Node.js v18 or higher
-- npm or yarn
-- Google Gemini API Key
+* Node.js v18 or higher
+* npm or yarn
+* Google Gemini API Key
 
 ### 1. Clone the Repository
 
@@ -85,27 +85,55 @@ npm start
 
 ---
 
+## Live API & Swagger Documentation
+
+The API is deployed and available for live testing.
+
+### Live Swagger Documentation
+
+**Swagger UI:**
+https://financial-assistant-api.onrender.com/docs/
+
+The interactive Swagger UI can be used to explore the available endpoints, view request/response schemas, and test the API directly from the browser.
+
+### Test Login Credentials
+
+```text
+Email: admin@financial.com
+Password: password123
+```
+
+> **Note:** These credentials are provided for testing the deployed API only. Do not use production credentials in a public README.
+
+---
+
 ## Environment Variables
 
-| **Variable** | **Description** | **Default** |
-|---|---|---|
-| `PORT` | The port for the Express server to listen on. | `3000` |
-| `LLM_API_KEY` | Google Gemini AI API key for intent classification and text synthesis. | Required |
-| `LLM_MODEL` | Gemini AI model identifier. | `gemini-1.5-flash` |
+| **Variable**  | **Description**                                                        | **Default**        |
+| ------------- | ---------------------------------------------------------------------- | ------------------ |
+| `PORT`        | The port for the Express server to listen on.                          | `3000`             |
+| `LLM_API_KEY` | Google Gemini AI API key for intent classification and text synthesis. | Required           |
+| `LLM_MODEL`   | Gemini AI model identifier.                                            | `gemini-1.5-flash` |
 
 ---
 
 ## API Documentation
 
-Interactive Swagger documentation is available at **`http://localhost:3000/docs`**.
+### Local Swagger Documentation
+
+When running the application locally, interactive Swagger documentation is available at:
+
+```text
+http://localhost:3000/docs
+```
 
 ### Endpoints Summary
 
-| **Method** | **Endpoint** | **Description** |
-|---|---|---|
-| `GET` | `/health` | Check server health and operational status. |
-| `POST` | `/api/chat` | Process chat requests using context and intent processing. |
-| `GET` | `/docs` | Open the interactive Swagger API documentation. |
+| **Method** | **Endpoint** | **Description**                                            |
+| ---------- | ------------ | ---------------------------------------------------------- |
+| `GET`      | `/health`    | Check server health and operational status.                |
+| `POST`     | `/api/chat`  | Process chat requests using context and intent processing. |
+| `GET`      | `/docs`      | Open the interactive Swagger API documentation.            |
 
 ---
 
@@ -207,8 +235,8 @@ Enforces structured output formatting (`{ success, data, error }`) globally thro
 
 ## Known Limitations
 
-- **In-Memory Session Store:** Session state and conversation history are stored in memory and reset upon server restart.
-- **Mocked Tool Integrations:** Financial stock data and fundamental metrics rely on simulated values rather than live exchange APIs.
+* **In-Memory Session Store:** Session state and conversation history are stored in memory and reset upon server restart.
+* **Mocked Tool Integrations:** Financial stock data and fundamental metrics rely on simulated values rather than live exchange APIs.
 
 ---
 
