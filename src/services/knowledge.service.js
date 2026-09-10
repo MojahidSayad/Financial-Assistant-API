@@ -17,3 +17,4 @@ function searchKnowledgeBase(query) {
 }
 
 module.exports = { searchKnowledgeBase };
+
