@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "topic": "pe_ratio",
+    "title": "P/E Ratio",
+    "content": "The Price-to-Earnings (P/E) ratio measures a company's current share price relative to its earnings per share. A higher P/E means investors expect higher growth in the future."
+  },
+  {
+    "id": 2,
+    "topic": "market_cap",
+    "title": "Market Capitalization",
+    "content": "Market capitalization refers to the total dollar market value of a company's outstanding shares of stock."
+  },
+  {
+    "id": 3,
+    "topic": "order_rejection",
+    "title": "Order Rejection Reasons",
+    "content": "A stock order can be rejected due to insufficient margin/funds, market hours being closed, invalid order limits, or exchange circuit limits."
+  },
+  {
+    "id": 4,
+    "topic": "stop_loss",
+    "title": "Stop-Loss Order",
+    "content": "A stop-loss order is an order placed with a broker to buy or sell a specific stock once the stock reaches a certain price to limit potential losses."
+  }
+]

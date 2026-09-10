@@ -1,0 +1,32 @@
+{
+  "prices": {
+    "RELIANCE": 2985.45,
+    "TCS": 4210.30,
+    "INFY": 1845.75,
+    "HDFCBANK": 1650.00,
+    "TATAMOTORS": 980.50
+  },
+  "fundamentals": {
+    "RELIANCE": {
+      "symbol": "RELIANCE",
+      "marketCap": "20.2L Cr",
+      "peRatio": 28.4,
+      "roe": 9.8,
+      "debtToEquity": 0.38
+    },
+    "TCS": {
+      "symbol": "TCS",
+      "marketCap": "15.2L Cr",
+      "peRatio": 31.5,
+      "roe": 48.2,
+      "debtToEquity": 0.08
+    },
+    "INFY": {
+      "symbol": "INFY",
+      "marketCap": "7.6L Cr",
+      "peRatio": 27.1,
+      "roe": 31.2,
+      "debtToEquity": 0.06
+    }
+  }
+}

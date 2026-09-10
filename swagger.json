@@ -1,0 +1,66 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "AI-Powered Financial Support Assistant API",
+    "version": "1.0.0",
+    "description": "Backend API that routes intent, calls financial tools, and interacts with LLM using session context."
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000",
+      "description": "Local Development Server"
+    }
+  ],
+  "paths": {
+    "/api/chat": {
+      "post": {
+        "summary": "Process natural language financial query",
+        "description": "Routes intent, executes backend tools if needed, and returns structured data alongside LLM response.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["sessionId", "message"],
+                "properties": {
+                  "sessionId": {
+                    "type": "string",
+                    "example": "abc123"
+                  },
+                  "message": {
+                    "type": "string",
+                    "example": "Show me fundamentals for TCS."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response with intent, data, and response string",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": { "type": "boolean", "example": true },
+                    "sessionId": { "type": "string", "example": "abc123" },
+                    "intent": { "type": "string", "example": "fundamentals" },
+                    "data": { "type": "object" },
+                    "response": { "type": "string", "example": "TCS currently has a P/E ratio of 31.5 and ROE of 48.2%." }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Validation error"
+          }
+        }
+      }
+    }
+  }
+}
+
