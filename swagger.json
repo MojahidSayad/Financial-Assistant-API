@@ -1,21 +1,65 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "AI-Powered Financial Support Assistant API",
+    "title": "Financial Support Assistant API",
     "version": "1.0.0",
-    "description": "Backend API that routes intent, calls financial tools, and interacts with LLM using session context."
+    "description": "Financial Assistant API with JWT Authentication"
   },
   "servers": [
     {
+      "url": "https://financial-assistant-api.onrender.com",
+      "description": "Production Server"
+    },
+    {
       "url": "http://localhost:3000",
-      "description": "Local Development Server"
+      "description": "Local Server"
     }
   ],
+  "components": {
+    "securitySchemes": {
+      "BearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
   "paths": {
+    "/api/auth/login": {
+      "post": {
+        "summary": "User Login to generate JWT Token",
+        "tags": ["Authentication"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["email", "password"],
+                "properties": {
+                  "email": { "type": "string", "example": "admin@financial.com" },
+                  "password": { "type": "string", "example": "password123" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Login successful, returns JWT token" },
+          "400": { "description": "Validation error" },
+          "401": { "description": "Invalid credentials" }
+        }
+      }
+    },
     "/api/chat": {
       "post": {
-        "summary": "Process natural language financial query",
-        "description": "Routes intent, executes backend tools if needed, and returns structured data alongside LLM response.",
+        "summary": "Send chat query to Financial Assistant (Protected)",
+        "tags": ["Chat"],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -24,43 +68,19 @@
                 "type": "object",
                 "required": ["sessionId", "message"],
                 "properties": {
-                  "sessionId": {
-                    "type": "string",
-                    "example": "abc123"
-                  },
-                  "message": {
-                    "type": "string",
-                    "example": "Show me fundamentals for TCS."
-                  }
+                  "sessionId": { "type": "string", "example": "render-test-session" },
+                  "message": { "type": "string", "example": "Hi, who are you?" }
                 }
               }
             }
           }
         },
         "responses": {
-          "200": {
-            "description": "Successful response with intent, data, and response string",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "success": { "type": "boolean", "example": true },
-                    "sessionId": { "type": "string", "example": "abc123" },
-                    "intent": { "type": "string", "example": "fundamentals" },
-                    "data": { "type": "object" },
-                    "response": { "type": "string", "example": "TCS currently has a P/E ratio of 31.5 and ROE of 48.2%." }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Validation error"
-          }
+          "200": { "description": "Success" },
+          "401": { "description": "Unauthorized / Missing Token" },
+          "403": { "description": "Forbidden / Invalid Token" }
         }
       }
     }
   }
 }
-
