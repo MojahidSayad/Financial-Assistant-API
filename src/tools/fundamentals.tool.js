@@ -18,3 +18,4 @@ function getFundamentals(symbol) {
 }
 
 module.exports = { getFundamentals };
+
